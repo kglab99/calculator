@@ -1,0 +1,101 @@
+body {
+    font-family: "Jost", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    background-color: #6c757d;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 90vh;
+}
+
+.calculator {
+    background-color: #adb5bd;
+    border-radius: 5px;
+    display: flex;
+    flex-basis: 28%;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.buttons-container {
+    display: flex;
+    background-color: #ced4da;
+    border-radius: 5px;
+    padding: 15px 10px 15px 10px;
+    gap: 10px;
+}
+
+.C {
+    color: #e63946;
+}
+
+.operator {
+    background-color: #c8d8e8;
+    color: #1d3557;
+}
+
+button {
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    font-style: normal;    
+    font-size: 18px;
+    background-color: #dee2e6;
+    border-radius: 5px;
+    border-style: none;
+    /* color: #495057; */
+    color: #1d3557;
+    height: 7vh;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
+} 
+
+button:hover {    
+    background-color: #dee2e6a4;
+    scale: 0.98;
+
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+}
+
+div.top-bar > p {
+    font-size: 10px;
+    font-weight: 300;
+    margin-top: 0;
+
+}
+
+div.top-bar {
+    justify-self: flex-start;
+    padding: 5px 10px 5px 10px;
+}
+
+div.display {
+    align-self: flex-end;
+    padding: 5px 10px 5px 10px;
+}
+
+p.display {
+    margin: 0px 0px 10px 0px;
+    text-align: end;
+}
+
+p.equation{
+    font-size: 12px;
+    font-weight: 400;
+    margin: 15px 0px 0px 0px;
+}
+
+.sum {
+    flex-grow: 1;
+}

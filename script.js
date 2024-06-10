@@ -66,26 +66,45 @@ const operatorButtons = document.querySelectorAll("button.operator");
 
 operatorButtons.forEach((button) => 
     button.addEventListener("click", () => {
-       
-        if (currentDisplay.textContent != "0."){
-        chosenOperation = button.textContent;
-            if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) != "."){
-                firstNumber = currentDisplay.textContent;
-                equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
+        if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) != "."){
+            chosenOperation = button.textContent;
+
+            firstNumber = currentDisplay.textContent;
+            equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
+            
+            currentDisplay.textContent = "0";
+            console.log(firstNumber);
+
+            firstNumberToggle = true;
+            usedDecimal = false;
+        } else if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) == ".") {
+            chosenOperation = button.textContent;
+
+            firstNumber = currentDisplay.textContent.slice(0, -1);
+            equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
+            
+            currentDisplay.textContent = "0";
+            console.log(firstNumber);
+
+            firstNumberToggle = true;
+            usedDecimal = false;
+        }
+
+
+        // if (currentDisplay.textContent != "0."){
+        // chosenOperation = button.textContent;
+        
+        //     // else if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) == ".") {
+        //     //     //deletes decimal if no value is added after it
+        //     //     firstNumber = currentDisplay.textContent.slice(0, -1);
+        //     //     equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
                 
-                currentDisplay.textContent = "0";
-                console.log(firstNumber);
-            } else if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) == ".") {
-                //deletes decimal if no value is added after it
-                firstNumber = currentDisplay.textContent.slice(0, -1);
-                equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
-                
-                currentDisplay.textContent = "0";
-                console.log(firstNumber);
-            }
-        firstNumberToggle = true;
-        usedDecimal = false;
-    } 
+        //     //     currentDisplay.textContent = "0";
+        //     //     console.log(firstNumber);
+        //     }
+        // firstNumberToggle = true;
+        // usedDecimal = false;
+    // }
 
     
 }))
@@ -122,7 +141,7 @@ const sumButton = document.querySelector("button.sum");
 
 sumButton.addEventListener("click", () => {
     
-    if (firstNumberToggle == true && secondNumberToggle == false) {
+    if (firstNumberToggle == true && secondNumberToggle == false && currentDisplay.textContent.slice(-1) != ".") {
         secondNumber = currentDisplay.textContent;
         equationDisplay.textContent = `${firstNumber} ${chosenOperation} ${secondNumber}`;
         // currentDisplay.textContent = "0";

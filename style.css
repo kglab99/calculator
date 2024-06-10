@@ -1,101 +1,102 @@
+:root {
+    --bg-color: #E0FBE2;
+    --c-button-color: #e63946;
+    --calc-bg-color: #ACE1AF;
+    --button-bg-color: #BFF6C3;
+    --button-hover-bg-color: #B0EBB4;
+    --font-color: #000000;
+    --secondary-font-color: #010101b0;
+
+}
+
 body {
-    font-family: "Jost", sans-serif;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
     font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    background-color: #E0FBE2;
+
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: auto;
-    margin-bottom: auto;
     height: 90vh;
 }
 
-.calculator {
-    background-color: #ACE1AF;
-    border-radius: 5px;
-    display: flex;
-    flex-basis: 28%;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-}
-
-.buttons-container {
-    display: flex;
-    border-radius: 5px;
-    padding: 15px 10px 15px 10px;
-    gap: 10px;
-}
-
 .C {
-    color: #e63946;
+    color: var(--c-button-color);
 }
 
-.equation {
-    color: #00000057;
+#calculator {
+    background-color: var(--calc-bg-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    /* justify-content: flex-end; */
+    padding: 15px 10px 15px 10px;
 }
 
-.operator {
-    color: #000000;
-}
+#buttons {
+    display: flex;
+    gap: 10px;
 
-button {
-    font-family: "Jost", sans-serif;
-    font-weight: 600;
-    font-style: normal;    
-    font-size: 18px;
-    background-color: #BFF6C3;
-    border-radius: 18px;
-    border-style: none;
-    color: #000000;
-    height: 4vw;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
-} 
-
-button:hover {    
-    scale: 0.98;
-    background-color: #B0EBB4;
 }
 
 .column {
     display: flex;
+    gap: 10px;
     flex-direction: column;
     flex-grow: 1;
-    gap: 10px;
 }
 
-div.top-bar > p {
-    font-size: 10px;
-    font-weight: 300;
-    margin-top: 0;
-
-}
-
-div.top-bar {
-    justify-self: flex-start;
-    padding: 5px 10px 5px 16px;
-}
-
-div.display {
-    align-self: flex-end;
-    padding: 5px 10px 5px 10px;
-}
-
-p.display {
-    margin: 0px 0px 10px 0px;
-    text-align: end;
-}
-
-p.equation{
-    font-size: 12px;
+button {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
-    margin: 15px 0px 0px 0px;
+    /* font-size: 14px; */
+    font-style: normal;
+
+    background-color: var(--button-bg-color);
+    border-radius: 5px;
+    border-style: none;
+    height: 4vw;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
 }
 
-.sum {
+button:hover {
+    scale: 0.98;
+    background-color: var(--button-hover-bg-color);
+}
+
+#display {
+    text-align: end;
+    font-weight: 400;
+}
+
+p.equation {
+    font-size: 10px;
+    color: var(--secondary-font-color);
+    margin-bottom: -5px;
+
+}
+
+#sum {
     flex-grow: 1;
+}
+
+#top-bar {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+div#top-bar > p {
+    margin-top: 0px;
+}
+
+p.current {
+    font-size: 36px;
+    margin: 0px 0px 5px 0px;
 }

@@ -3,7 +3,7 @@ body {
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-    background-color: #6c757d;
+    background-color: #caf0f8;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -56,7 +56,6 @@ button {
 } 
 
 button:hover {    
-    background-color: #dee2e6a4;
     scale: 0.98;
 
 }

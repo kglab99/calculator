@@ -1,180 +1,236 @@
-//global variables
-let firstNumber = 0;
-let firstNumberToggle = false;
-let secondNumber = 0;
-let secondNumberToggle = false;
-let chosenOperation = "";
-let result;
-let wasRun = false;
-let usedDecimal = false;
 
-//basic calc functions
-function add (a, b){
-    return a+b;
+let calcResult = 0;
+let operator = "";
+
+function add(a, b) {
+    return a + b;
 }
 
-function substract (a, b){
-    return a-b;
+function substract(a, b){
+    return a - b;
 }
 
-function multiply (a, b){
-    return a*b;
+function x(a, b) {
+    return a * b;
 }
 
-function divide (a, b){
-    return a/b;
+function divide(a, b) {
+    let result;
+    if (b == 0) {
+        result = "Error. Don't divide with 0 lol";
+    } else if (a == 0) {
+        result = 0;
+    } else {
+        result = a / b;
+    }
+    return result;
 }
 
-//display selectors + default values
+// selects operator buttons
+let operatorButtons = document.querySelectorAll("button.operator");
+let chosenOperation;
+let firstNumberChosen = false;
+
+// append chosen function for every operator button based on its value, print
+// toogles firstNumberChosen to switch to secondNumber when clicking numbers
+
+operatorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+
+        switch(button.textContent) {
+            case "X":
+                chosenOperation = "x";
+                console.log(chosenOperation);
+                operator = "x"
+                firstNumberChosen = true;
+                break;
+            case "+":
+                chosenOperation = "add";
+                console.log(chosenOperation);
+                operator = "+";
+                firstNumberChosen = true;
+                break;
+            case "-":
+                chosenOperation = "substract";
+                console.log(chosenOperation);
+                operator = "-"
+                firstNumberChosen = true;
+                break;
+            case "/":
+                chosenOperation = "divide";
+                console.log(chosenOperation);
+                operator = "/"
+                firstNumberChosen = true;
+                break;
+        }
+        updateCurrentDisplay();
+
+    })
+})
+
+// Event listener for 'C' button
+let clearButton = document.querySelector("button#C");
+clearButton.addEventListener("click", () => {
+    if (firstNumber.length == 1){
+        firstNumber = "0";
+    }
+    else if (firstNumberChosen == false && firstNumber != "0") {
+        firstNumber = firstNumber.substring(0, firstNumber.length - 1)
+        console.log(firstNumber)
+    } else if (firstNumberChosen == true && secondNumber != "0") {
+        secondNumber = secondNumber.substring(0, secondNumber.length - 1)
+        console.log(secondNumber)
+    // } else if (firstNumberChosen == false && firstNumber.length == 1) {
+    //     firstNumber = 0;
+    } 
+    updateCurrentDisplay();
+    console.log("C");
+})
+
+// Event listener for 'AC' button
+let clearAllButton = document.querySelector("button#AC");
+clearAllButton.addEventListener("click", () => {
+    console.log("AC");
+    updateCurrentDisplay();
+    AC();
+})
+
+// Event listener for 'decimal' button
+let decimalButton = document.querySelector("button#decimal");
+decimalButton.addEventListener("click", () => {
+    console.log(".");
+
+    if (firstNumberChosen == false) {
+        if (firstNumber == "" && firstNumber != "0." && firstNumber.includes(".") == false) {
+            firstNumber = "0.";
+        } else if (firstNumber != "" && firstNumber.slice(-1) != "." && firstNumber.includes(".") == false) {
+            firstNumber = firstNumber + "."
+        }
+    } else if (firstNumberChosen == true && secondNumber.includes(".") == false) {
+        if (secondNumber == "" && secondNumber != "0.") {
+            secondNumber = "0.";
+        } else if (secondNumber != "" && secondNumber.slice(-1) != ".") {
+            secondNumber = secondNumber + "."
+        }
+    }
+    updateCurrentDisplay();
+
+
+})
+
+
+// var for firstNumber
+let firstNumber = "0";
+let secondNumber = "";
+
+
+// Event listeners for num buttons
+let numberButtons = document.querySelectorAll("button.number");
+numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+
+        // for firstNumber
+        if (firstNumberChosen == false) {
+            // Append clicked value to "firstNumber" string
+            if (firstNumber == "") {
+                firstNumber = button.textContent;
+                console.log(firstNumber);
+            } else if (firstNumber != "" && firstNumber != "0") {
+                firstNumber = firstNumber + button.textContent;
+                console.log(firstNumber);
+            } else if (firstNumber == "0") {
+                firstNumber = button.textContent;
+            }
+        } // switch to secondNumber when operator is clicked
+        else if (firstNumberChosen == true) {
+            if (secondNumber == "") {
+                secondNumber = button.textContent;
+                console.log(secondNumber);
+            } else if (secondNumber != "") {
+                secondNumber = secondNumber + button.textContent;
+                console.log(secondNumber);
+            }
+
+        }
+        updateCurrentDisplay();
+
+        // console.log(button.textContent);
+    })
+})
+
+// Event listener for 'sum' button
+// run chosen operation
+let sumButton = document.querySelector("button#sum");
+sumButton.addEventListener("click", () => {
+    
+    if (firstNumber != "" && secondNumber != "") {
+        switch (chosenOperation) {
+            case "x":
+            calcResult = x(Number(firstNumber), Number(secondNumber));
+            console.log(calcResult);
+            chosenOperation = "";
+            console.log(chosenOperation);
+            break;
+            case "add":
+            calcResult = add(Number(firstNumber), Number(secondNumber));
+            console.log(calcResult);
+            chosenOperation = "";
+            console.log(chosenOperation);
+            break;
+            case "substract":
+            calcResult = substract(Number(firstNumber), Number(secondNumber));
+            console.log(calcResult);
+            chosenOperation = "";
+            console.log(chosenOperation);
+            break;
+            case "divide":
+            calcResult = divide(Number(firstNumber), Number(secondNumber));
+            console.log(calcResult);
+            chosenOperation = "";
+            console.log(chosenOperation);
+            break;
+        }
+
+        // prevents problems with floating point numbers by rounding result if decimal is present
+        if (calcResult.toString().includes(".") == true){
+            calcResult = calcResult.toFixed(2);
+        }
+
+        operator = "";
+        firstNumber = calcResult;
+        secondNumber = "";
+        firstNumberChosen = true; // prevents from adding numbers to firstNumber, which becomes equal to calcresult
+    } else {
+        firstNumberChosen = true;
+        operator = "";
+        secondNumber = "";
+    }
+    updateCurrentDisplay();
+
+})
+
+// clears all vars to allow new calculation
+function AC() {
+    firstNumberChosen = false;
+    firstNumber = "0";
+    secondNumber = "";
+    chosenOperation = "";
+    operator = "";
+    calcResult = "0";
+    updateCurrentDisplay();
+}
+
 let currentDisplay = document.querySelector("p.current");
 currentDisplay.textContent = "0";
 
-let equationDisplay = document.querySelector("p.equation");
-equationDisplay.textContent = "0";
-
-//listeners for input number buttons
-const numberButtons = document.querySelectorAll("button.number");
-
-numberButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        if (wasRun == false) {
-            appendNumber(button.textContent);
-        } else { //allows calculator to run again after being run when any number is clicked
-            reset();
-            appendNumber(button.textContent);
-        }
-
-    });
-})
-
-//ads clicked number to display
-function appendNumber(number) {
-    //conditional prevents ex. 05 from showing when 5 is clicked
-    if (currentDisplay.textContent == 0 && usedDecimal == false) {
-        currentDisplay.textContent = "";
+function updateCurrentDisplay() {
+    if (operator == "") {
+    currentDisplay.textContent = `${firstNumber}`;
+    } else {
+    currentDisplay.textContent = `${firstNumber}${operator}${secondNumber}`;
     }
-    currentDisplay.textContent = currentDisplay.textContent + number;
+
 }
-
-//listener for clear button
-const C = document.querySelector("button.C");
-C.addEventListener("click", reset);
-
-//adds listener to each operator button that saves first number when operator is chosen
-//and shows equation on equationDisplay
-const operatorButtons = document.querySelectorAll("button.operator");
-
-operatorButtons.forEach((button) => 
-    button.addEventListener("click", () => {
-        if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) != "."){
-            chosenOperation = button.textContent;
-
-            firstNumber = currentDisplay.textContent;
-            equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
-            
-            currentDisplay.textContent = "0";
-            console.log(firstNumber);
-
-            firstNumberToggle = true;
-            usedDecimal = false;
-        } else if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) == ".") {
-            chosenOperation = button.textContent;
-
-            firstNumber = currentDisplay.textContent.slice(0, -1);
-            equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
-            
-            currentDisplay.textContent = "0";
-            console.log(firstNumber);
-
-            firstNumberToggle = true;
-            usedDecimal = false;
-        }
-
-
-        // if (currentDisplay.textContent != "0."){
-        // chosenOperation = button.textContent;
-        
-        //     // else if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) == ".") {
-        //     //     //deletes decimal if no value is added after it
-        //     //     firstNumber = currentDisplay.textContent.slice(0, -1);
-        //     //     equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
-                
-        //     //     currentDisplay.textContent = "0";
-        //     //     console.log(firstNumber);
-        //     }
-        // firstNumberToggle = true;
-        // usedDecimal = false;
-    // }
-
-    
-}))
-
-//sets all values to default in order to run a new calculation
-function reset() {
-    firstNumber = 0;
-    secondNumber = 0;
-    currentDisplay.textContent = "0";
-    firstNumberToggle = false;
-    secondNumberToggle = false;
-    chosenOperation = "";
-    wasRun = false;
-    usedDecimal = false;
-    equationDisplay.textContent = "0";
-}
-
-//allows usage of a decimal, var usedDecimal prevents more than one decimal being added
-const decimal = document.querySelector("button.decimal");
-decimal.addEventListener("click", () => {
-    if (usedDecimal == false && currentDisplay.textContent != "0") {
-        appendNumber(decimal.textContent);
-        usedDecimal = true;
-    } 
-    else if (usedDecimal == false && currentDisplay.textContent == "0") {
-        appendNumber(`0${decimal.textContent}`);
-        usedDecimal = true;
-    }
-
-})
-
-//runs chosen calculation when "=" button is clicked. 
-const sumButton = document.querySelector("button.sum");
-
-sumButton.addEventListener("click", () => {
-    
-    if (firstNumberToggle == true && secondNumberToggle == false && currentDisplay.textContent.slice(-1) != ".") {
-        secondNumber = currentDisplay.textContent;
-        equationDisplay.textContent = `${firstNumber} ${chosenOperation} ${secondNumber}`;
-        // currentDisplay.textContent = "0";
-        console.log(secondNumber);
-        secondNumberToggle = true;
-
-        switch (chosenOperation) {
-            case "+":
-                currentDisplay.textContent = (add(Number(firstNumber), Number(secondNumber)));
-                break;
-            case "-":
-                currentDisplay.textContent = (substract(Number(firstNumber), Number(secondNumber)));
-                break;
-            case "/":
-                result = (divide(Number(firstNumber), Number(secondNumber)));
-                if (typeof(result) == Number) {
-                    currentDisplay.textContent = result;
-                } else {//to prevent value 'infinity' when users divide by 0
-                    currentDisplay.textContent = "Error. Don't divide by 0 lol";
-                }
-                break;
-            case "X":
-                currentDisplay.textContent = (multiply(Number(firstNumber), Number(secondNumber)));
-                break;
-        }
-        
-        //prevents adding value to calculation result
-        wasRun = true;
-        //prevents adding decimal to calculation result
-        usedDecimal = true;
-    }
-
-})
 
 //live clock for top bar
 let now = new Date();
@@ -189,8 +245,5 @@ if (minutes < 10){
     minutes = "0" + minutes;
 }
 
-const clock = document.querySelector("p.clock");
+const clock = document.querySelector("p#clock");
 clock.textContent = `${hours}:${minutes}`;
-
-// to add:
-// continue calculation after first calc, ex 1+2=3 -2=1

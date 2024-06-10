@@ -25,8 +25,6 @@ function divide (a, b){
     return a/b;
 }
 
-
-
 //display selectors + default values
 let currentDisplay = document.querySelector("p.current");
 currentDisplay.textContent = "0";
@@ -51,7 +49,7 @@ numberButtons.forEach((button) => {
 
 //ads clicked number to display
 function appendNumber(number) {
-    //loop prevents ex. 05 from showing when 5 is clicked
+    //conditional prevents ex. 05 from showing when 5 is clicked
     if (currentDisplay.textContent == 0 && usedDecimal == false) {
         currentDisplay.textContent = "";
     }
@@ -71,18 +69,25 @@ operatorButtons.forEach((button) =>
        
         if (currentDisplay.textContent != "0."){
         chosenOperation = button.textContent;
-
-        if (firstNumberToggle == false){
-        firstNumber = currentDisplay.textContent;
-        equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
-        
-        currentDisplay.textContent = "0";
-        console.log(firstNumber);
-        }
+            if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) != "."){
+                firstNumber = currentDisplay.textContent;
+                equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
+                
+                currentDisplay.textContent = "0";
+                console.log(firstNumber);
+            } else if (firstNumberToggle == false && currentDisplay.textContent.slice(-1) == ".") {
+                //deletes decimal if no value is added after it
+                firstNumber = currentDisplay.textContent.slice(0, -1);
+                equationDisplay.textContent = `${firstNumber} ${chosenOperation}`;
+                
+                currentDisplay.textContent = "0";
+                console.log(firstNumber);
+            }
         firstNumberToggle = true;
         usedDecimal = false;
+    } 
 
-    }
+    
 }))
 
 //sets all values to default in order to run a new calculation

@@ -287,3 +287,14 @@ document.addEventListener("keydown", (e) =>  {
     }
 }
 )
+
+
+//Deletes info about keyboard support on smaller screens (mobiles)
+function mobile(){
+    if (window.innerWidth < 800) {
+        document.querySelector("div#info").remove();
+    }
+}    
+
+mobile();
+window.addEventListener("resize", mobile);

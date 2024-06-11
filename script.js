@@ -276,8 +276,12 @@ document.addEventListener("keydown", (e) =>  {
             document.querySelector(`button#AC`).click();
             break;
         case "=" :
-            document.preventDefault();
+            e.preventDefault();
             document.querySelector(`button#sum`).click();
+            break;
+        case "." :
+            document.querySelector(`button#decimal`).click();
+            console.log("dupa");
             break;
 
     }

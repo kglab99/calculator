@@ -37,28 +37,24 @@ let firstNumberChosen = false;
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
 
-        switch(button.textContent) {
-            case "X":
+        switch(button.id) {
+            case "multiply":
                 chosenOperation = "x";
-                console.log(chosenOperation);
                 operator = "x"
                 firstNumberChosen = true;
                 break;
-            case "+":
+            case "add":
                 chosenOperation = "add";
-                console.log(chosenOperation);
                 operator = "+";
                 firstNumberChosen = true;
                 break;
-            case "-":
+            case "substract":
                 chosenOperation = "substract";
-                console.log(chosenOperation);
                 operator = "-"
                 firstNumberChosen = true;
                 break;
-            case "/":
+            case "divide":
                 chosenOperation = "divide";
-                console.log(chosenOperation);
                 operator = "/"
                 firstNumberChosen = true;
                 break;
@@ -76,21 +72,17 @@ clearButton.addEventListener("click", () => {
     }
     else if (firstNumberChosen == false && firstNumber != "0") {
         firstNumber = firstNumber.substring(0, firstNumber.length - 1)
-        console.log(firstNumber)
     } else if (firstNumberChosen == true && secondNumber != "0") {
         secondNumber = secondNumber.substring(0, secondNumber.length - 1)
-        console.log(secondNumber)
     // } else if (firstNumberChosen == false && firstNumber.length == 1) {
     //     firstNumber = 0;
     } 
     updateCurrentDisplay();
-    console.log("C");
 })
 
 // Event listener for 'AC' button
 let clearAllButton = document.querySelector("button#AC");
 clearAllButton.addEventListener("click", () => {
-    console.log("AC");
     updateCurrentDisplay();
     AC();
 })
@@ -98,7 +90,6 @@ clearAllButton.addEventListener("click", () => {
 // Event listener for 'decimal' button
 let decimalButton = document.querySelector("button#decimal");
 decimalButton.addEventListener("click", () => {
-    console.log(".");
 
     if (firstNumberChosen == false) {
         if (firstNumber == "" && firstNumber != "0." && firstNumber.includes(".") == false) {
@@ -136,10 +127,8 @@ numberButtons.forEach((button) => {
             // Append clicked value to "firstNumber" string
             if (firstNumber == "") {
                 firstNumber = button.textContent;
-                console.log(firstNumber);
             } else if (firstNumber != "" && firstNumber != "0") {
                 firstNumber = firstNumber + button.textContent;
-                console.log(firstNumber);
             } else if (firstNumber == "0") {
                 firstNumber = button.textContent;
             }
@@ -147,16 +136,13 @@ numberButtons.forEach((button) => {
         else if (firstNumberChosen == true) {
             if (secondNumber == "") {
                 secondNumber = button.textContent;
-                console.log(secondNumber);
             } else if (secondNumber != "") {
                 secondNumber = secondNumber + button.textContent;
-                console.log(secondNumber);
             }
 
         }
         updateCurrentDisplay();
 
-        // console.log(button.textContent);
     })
 })
 
@@ -169,27 +155,19 @@ sumButton.addEventListener("click", () => {
         switch (chosenOperation) {
             case "x":
             calcResult = x(Number(firstNumber), Number(secondNumber));
-            console.log(calcResult);
             chosenOperation = "";
-            console.log(chosenOperation);
             break;
             case "add":
             calcResult = add(Number(firstNumber), Number(secondNumber));
-            console.log(calcResult);
             chosenOperation = "";
-            console.log(chosenOperation);
             break;
             case "substract":
             calcResult = substract(Number(firstNumber), Number(secondNumber));
-            console.log(calcResult);
             chosenOperation = "";
-            console.log(chosenOperation);
             break;
             case "divide":
             calcResult = divide(Number(firstNumber), Number(secondNumber));
-            console.log(calcResult);
             chosenOperation = "";
-            console.log(chosenOperation);
             break;
         }
 

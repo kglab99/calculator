@@ -17,10 +17,11 @@ body {
 
     background-color: var(--bg-color);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    height: 90vh;
+    /* margin-left: 15%; */
 }
 
 .C {
@@ -37,7 +38,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     /* justify-content: flex-end; */
     padding: 15px 10px 15px 10px;
-    margin-top: 50px;
+    /* margin-top: 20%; */
+    max-width: fit-content;
 }
 
 #buttons {
@@ -129,9 +131,9 @@ div#info > h1 {
 }
 
 div#info {
-    margin-top: -50px;
-    margin-right: 50px;
-    align-self: flex-end;
+    /* margin-top: -20%; */
+    margin-left: 5%;
+    /* align-self: flex-end; */
     display: flex;
     flex-direction: column;
 }

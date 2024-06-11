@@ -2,6 +2,7 @@
 let calcResult = 0;
 let operator = "";
 let errorMessage = "Error";
+let clickedOperator;
 
 function add(a, b) {
     return a + b;
@@ -38,6 +39,15 @@ let firstNumberChosen = false;
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
 
+        //Adds functionality of summing shown function and starting next function
+        //When operator button was clicked before = button
+        if (firstNumberChosen == true && secondNumber != "" && secondNumber != ".")
+            {
+                clickedOperator = operator;
+                document.querySelector(`button#sum`).click();
+                operator = clickedOperator;
+            }
+
         switch(button.id) {
             case "multiply":
                 chosenOperation = "x";
@@ -61,6 +71,8 @@ operatorButtons.forEach((button) => {
                 break;
         }
         updateCurrentDisplay();
+
+        
 
     })
 })

@@ -41,7 +41,7 @@ let firstNumberChosen = false;
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
 
-        // Adds functionality of summing shown function and starting next function
+        // Adds functionality of calculating shown function and starting next calculation
         // When operator button was clicked before = button
         if (firstNumberChosen == true && operator != ""){   
                 document.querySelector(`button#sum`).click();     
@@ -194,7 +194,6 @@ sumButton.addEventListener("click", () => {
         firstNumberChosen = true; // prevents from adding numbers to firstNumber, which becomes equal to calcresult
     } else {
         firstNumberChosen = true;
-        operator = "";
         secondNumber = "";
     }
 

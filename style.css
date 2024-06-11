@@ -117,9 +117,8 @@ p.current {
 
 div.info-text {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-
+    justify-content: space-between;
+    margin-left: 20px;
 }
 
 div.info-text > ul {
@@ -129,19 +128,34 @@ div.info-text > ul {
 div#info > h1 {
     text-align: center;
     margin-bottom: 0px;
+    display: flex;
+}
+
+div#info > h1 > img {
+    margin-left: 10px;
 }
 
 div#info {
     /* margin-top: -20%; */
     margin-left: 5%;
-    /* align-self: flex-end; */
+    /* align-self: flex; */
+    /* justify-self: flex-start; */
     display: flex;
     flex-direction: column;
 }
 
 button > img {
     margin: auto;
+}
 
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+li {
+    display: flex;
+    margin-top: 6px;
 }
 
 

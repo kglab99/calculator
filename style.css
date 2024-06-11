@@ -60,6 +60,7 @@ button {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    color: black;
 
     background-color: var(--button-bg-color);
     border-radius: 5px;
@@ -164,9 +165,14 @@ li {
         display: none;
     }
 
+    button {
+        width: 8vh;
+        height: 8vh;
+    }
+
     button > img {
         height: 3vh;
         width: 3vh;
-        margin: auto;
+        margin: 0 auto;
     }
 }

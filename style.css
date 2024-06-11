@@ -80,7 +80,14 @@ p.equation {
     font-size: 10px;
     color: var(--secondary-font-color);
     margin-bottom: -5px;
+}
 
+p.secondary {
+    font-size: 10px;
+    color: var(--secondary-font-color);
+    text-align: start;
+    font-weight: 300;
+    margin-bottom: -10px;
 }
 
 #sum {

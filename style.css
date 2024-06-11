@@ -138,3 +138,21 @@ div#info {
     display: flex;
     flex-direction: column;
 }
+
+button > img {
+    margin: auto;
+
+}
+
+
+@media (max-width: 800px) {
+    div#info {
+        display: none;
+    }
+
+    button > img {
+        height: 3vh;
+        width: 3vh;
+        margin: auto;
+    }
+}

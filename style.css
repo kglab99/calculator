@@ -17,10 +17,10 @@ body {
 
     background-color: var(--bg-color);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    /* height: 100vh; */
 }
 
 .C {
@@ -32,10 +32,12 @@ body {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    flex-basis: 20%;
+    flex-wrap: wrap;
+    flex-basis: 25%;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     /* justify-content: flex-end; */
     padding: 15px 10px 15px 10px;
+    margin-top: 50px;
 }
 
 #buttons {
@@ -55,16 +57,18 @@ button {
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
-    /* font-size: 14px; */
     font-style: normal;
 
     background-color: var(--button-bg-color);
     border-radius: 5px;
     border-style: none;
-    height: 4vw;
+    height: 7vh;
+    width: 4vw;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
 }
+
+
 
 button:hover {
     scale: 0.98;
@@ -106,4 +110,28 @@ div#top-bar > p {
 p.current {
     font-size: 36px;
     margin: 0px 0px 5px 0px;
+}
+
+div.info-text {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+div.info-text > ul {
+    margin-top: 5px;
+}
+
+div#info > h1 {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+div#info {
+    margin-top: -50px;
+    margin-right: 50px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
 }

@@ -3,6 +3,8 @@ let calcResult = 0;
 let operator = "";
 let errorMessage = "Error";
 let clickedOperator;
+let clearSecondNumber = true;
+let secondNumberMemory = "";
 
 function add(a, b) {
     return a + b;
@@ -30,7 +32,7 @@ function divide(a, b) {
 
 // selects operator buttons
 let operatorButtons = document.querySelectorAll("button.operator");
-let chosenOperation;
+let chosenOperation
 let firstNumberChosen = false;
 
 // append chosen function for every operator button based on its value, print
@@ -39,41 +41,41 @@ let firstNumberChosen = false;
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
 
-        //Adds functionality of summing shown function and starting next function
-        //When operator button was clicked before = button
-        if (firstNumberChosen == true && secondNumber != "" && secondNumber != ".")
-            {
-                clickedOperator = operator;
-                document.querySelector(`button#sum`).click();
-                operator = clickedOperator;
+        // Adds functionality of summing shown function and starting next function
+        // When operator button was clicked before = button
+        if (firstNumberChosen == true && operator != ""){   
+                document.querySelector(`button#sum`).click();     
             }
+
+    
 
         switch(button.id) {
             case "multiply":
                 chosenOperation = "x";
-                operator = "x"
+                operator = "x";
                 firstNumberChosen = true;
                 break;
             case "add":
+                console.log("_____");
+                console.log(secondNumber);
                 chosenOperation = "add";
                 operator = "+";
                 firstNumberChosen = true;
+                console.log("_____");
+                console.log(secondNumber);
                 break;
             case "substract":
                 chosenOperation = "substract";
-                operator = "-"
+                operator = "-";
                 firstNumberChosen = true;
                 break;
             case "divide":
                 chosenOperation = "divide";
-                operator = "/"
+                operator = "/";
                 firstNumberChosen = true;
                 break;
         }
         updateCurrentDisplay();
-
-        
-
     })
 })
 
@@ -87,8 +89,6 @@ clearButton.addEventListener("click", () => {
         firstNumber = firstNumber.substring(0, firstNumber.length - 1)
     } else if (firstNumberChosen == true && secondNumber != "0") {
         secondNumber = secondNumber.substring(0, secondNumber.length - 1)
-    // } else if (firstNumberChosen == false && firstNumber.length == 1) {
-    //     firstNumber = 0;
     } 
     updateCurrentDisplay();
 })
@@ -188,7 +188,6 @@ sumButton.addEventListener("click", () => {
         if (calcResult.toString().includes(".") == true && calcResult != errorMessage){
             calcResult = calcResult.toFixed(2);
         }
-
         operator = "";
         firstNumber = calcResult;
         secondNumber = "";
@@ -198,6 +197,8 @@ sumButton.addEventListener("click", () => {
         operator = "";
         secondNumber = "";
     }
+
+    
     updateCurrentDisplay();
 
 })
@@ -293,7 +294,6 @@ document.addEventListener("keydown", (e) =>  {
             break;
         case "." :
             document.querySelector(`button#decimal`).click();
-            console.log("dupa");
             break;
 
     }

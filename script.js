@@ -109,8 +109,10 @@ decimalButton.addEventListener("click", () => {
     } else if (firstNumberChosen == true && secondNumber.includes(".") == false) {
         if (secondNumber == "" && secondNumber != "0.") {
             secondNumber = "0.";
+            updateCurrentDisplay();
         } else if (secondNumber != "" && secondNumber.slice(-1) != ".") {
             secondNumber = secondNumber + "."
+            updateCurrentDisplay();
         }
     }
     updateCurrentDisplay();
@@ -222,12 +224,19 @@ function AC() {
 
 let currentDisplay = document.querySelector("p.current");
 currentDisplay.textContent = "0";
+let secondaryDisplay = document.querySelector("p.secondary");
+secondaryDisplay.textContent = "";
 
 function updateCurrentDisplay() {
-    if (operator == "") {
+    if (firstNumberChosen == false && operator == "") {
     currentDisplay.textContent = `${firstNumber}`;
+    secondaryDisplay.textContent = "";
+    } else if (firstNumberChosen == true && secondNumber != "" && operator == "") {
+    currentDisplay.textContent = `${firstNumber} ${secondNumber}`;
+    secondaryDisplay.textContent = "Choose an operator to continue";
     } else {
     currentDisplay.textContent = `${firstNumber}${operator}${secondNumber}`;
+    secondaryDisplay.textContent = "";
     }
 
 }

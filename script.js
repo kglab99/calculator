@@ -1,6 +1,7 @@
 
 let calcResult = 0;
 let operator = "";
+let errorMessage = "Error";
 
 function add(a, b) {
     return a + b;
@@ -17,7 +18,7 @@ function x(a, b) {
 function divide(a, b) {
     let result;
     if (b == 0) {
-        result = "Error. Don't divide with 0 lol";
+        result = errorMessage;
     } else if (a == 0) {
         result = 0;
     } else {
@@ -172,7 +173,7 @@ sumButton.addEventListener("click", () => {
         }
 
         // prevents problems with floating point numbers by rounding result if decimal is present
-        if (calcResult.toString().includes(".") == true){
+        if (calcResult.toString().includes(".") == true && calcResult != errorMessage){
             calcResult = calcResult.toFixed(2);
         }
 
@@ -234,3 +235,51 @@ if (minutes < 10){
 
 const clock = document.querySelector("p#clock");
 clock.textContent = `${hours}:${minutes}`;
+
+//adds keyboards support
+
+document.addEventListener("keydown", (e) =>  {
+    console.log(e.key);
+    switch (e.key) {
+        case "Enter":
+            e.preventDefault();
+            document.querySelector(`button#sum`).click();
+            break;
+        case "1" :
+        case "2" :
+        case "3" :
+        case "4" :
+        case "5" :
+        case "6" :
+        case "7" :
+        case "8" :
+        case "9" :
+        case "0" :     
+            document.querySelector(`button#n${e.key}`).click();
+            break;
+        case "+" :
+            document.querySelector(`button#add`).click();
+            break;
+        case "-" :
+            document.querySelector(`button#substract`).click();
+            break;
+        case "/" :
+            document.querySelector(`button#divide`).click();
+            break;
+        case "*" :
+            document.querySelector(`button#multiply`).click();
+            break;
+        case "Backspace" :
+            document.querySelector(`button#C`).click();
+            break;
+        case "Escape" :
+            document.querySelector(`button#AC`).click();
+            break;
+        case "=" :
+            document.preventDefault();
+            document.querySelector(`button#sum`).click();
+            break;
+
+    }
+}
+)

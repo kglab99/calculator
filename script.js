@@ -359,15 +359,15 @@ slider.addEventListener("change", () => {
 
 
 function changeUI () {
-    root.style.setProperty("--bg-color", "black");
+    root.style.setProperty("--bg-color", "#1a1c23");
     root.style.setProperty("--calc-bg-color", "#22252D");
     root.style.setProperty("--button-bg-color", "#2A2D37");
     root.style.setProperty("--button-hover-bg-color", "#282832");
-    root.style.setProperty("--font-color", "white");
+    root.style.setProperty("--font-color", "#f3f6f4");
     root.style.setProperty("--secondary-font-color", "grey");
-    root.style.setProperty("--button-color", "white");
+    root.style.setProperty("--button-color", "#f3f6f4");
     svgs.forEach((svg) => {
-        svg.style.filter = "invert(1)";
+        svg.style.filter = "brightness(0) saturate(100%) invert(90%) sepia(13%) saturate(265%) hue-rotate(164deg) brightness(114%) contrast(92%)";
     }
 )
 }

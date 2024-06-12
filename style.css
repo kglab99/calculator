@@ -22,7 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 90vh;
-    transition: background 2s;
+    /* transition: all 0.05s; */
 }
 
 .C {

@@ -1,11 +1,14 @@
-
+// * Global cars, default values
 let calcResult = 0;
 let operator = "";
 let errorMessage = "Error";
 let clickedOperator;
 let clearSecondNumber = true;
 let secondNumberMemory = "";
+let firstNumber = "0";
+let secondNumber = "";
 
+// * Basic calc functions
 function add(a, b) {
     return a + b;
 }
@@ -30,7 +33,7 @@ function divide(a, b) {
     return result;
 }
 
-// selects operator buttons
+// * Operator selection
 let operatorButtons = document.querySelectorAll("button.operator");
 let chosenOperation
 let firstNumberChosen = false;
@@ -47,8 +50,6 @@ operatorButtons.forEach((button) => {
                 document.querySelector(`button#sum`).click();     
             }
 
-    
-
         switch(button.id) {
             case "multiply":
                 chosenOperation = "x";
@@ -56,13 +57,9 @@ operatorButtons.forEach((button) => {
                 firstNumberChosen = true;
                 break;
             case "add":
-                console.log("_____");
-                console.log(secondNumber);
                 chosenOperation = "add";
                 operator = "+";
                 firstNumberChosen = true;
-                console.log("_____");
-                console.log(secondNumber);
                 break;
             case "substract":
                 chosenOperation = "substract";
@@ -79,7 +76,8 @@ operatorButtons.forEach((button) => {
     })
 })
 
-// Event listener for 'C' button
+
+// * Clear button functionality -> remove last inputed number
 let clearButton = document.querySelector("button#C");
 clearButton.addEventListener("click", () => {
     if (firstNumber.length == 1){
@@ -93,14 +91,27 @@ clearButton.addEventListener("click", () => {
     updateCurrentDisplay();
 })
 
-// Event listener for 'AC' button
+// * Clear All function
+
+// * Clear All button functionality
 let clearAllButton = document.querySelector("button#AC");
 clearAllButton.addEventListener("click", () => {
     updateCurrentDisplay();
     AC();
 })
 
-// Event listener for 'decimal' button
+// * Clear All function
+function AC() {
+    firstNumberChosen = false;
+    firstNumber = "0";
+    secondNumber = "";
+    chosenOperation = "";
+    operator = "";
+    calcResult = "0";
+    updateCurrentDisplay();
+}
+
+// Decimal button functionality and logic
 let decimalButton = document.querySelector("button#decimal");
 decimalButton.addEventListener("click", () => {
 
@@ -125,12 +136,7 @@ decimalButton.addEventListener("click", () => {
 })
 
 
-// var for firstNumber
-let firstNumber = "0";
-let secondNumber = "";
-
-
-// Event listeners for num buttons
+// * Number buttons functionality
 let numberButtons = document.querySelectorAll("button.number");
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -165,7 +171,7 @@ numberButtons.forEach((button) => {
     })
 })
 
-// Event listener for 'sum' button
+// * Sum button functionality
 // run chosen operation
 let sumButton = document.querySelector("button#sum");
 sumButton.addEventListener("click", () => {
@@ -208,17 +214,8 @@ sumButton.addEventListener("click", () => {
 
 })
 
-// clears all vars to allow new calculation
-function AC() {
-    firstNumberChosen = false;
-    firstNumber = "0";
-    secondNumber = "";
-    chosenOperation = "";
-    operator = "";
-    calcResult = "0";
-    updateCurrentDisplay();
-}
 
+// * Calc display
 let currentDisplay = document.querySelector("p.current");
 currentDisplay.textContent = "0";
 let secondaryDisplay = document.querySelector("p.secondary");
@@ -262,37 +259,11 @@ function updateCurrentDisplay() {
 
 }
 
-//live clock for top bar
-let now = new Date();
-let hours = now.getHours();
-let minutes = now.getMinutes();
 
-if (hours < 10) {
-    hours = "0" + hours;
-}
-
-if (minutes < 10){
-    minutes = "0" + minutes;
-}
-
-// Update clock on page load
-const clock = document.querySelector("p#clock");
-clock.textContent = `${hours}:${minutes}`;
-
-
-// Update clock every minute
-setInterval( ()=> {
-    now = new Date();
-    hours = now.getHours();
-    minutes = now.getMinutes();
-
-    clock.textContent = `${hours}:${minutes}`;
-}, 60 * 1000);
-
-//adds keyboards support
+// * ADDITIONAL FUNCTIONS
+// * Keyboard support
 
 document.addEventListener("keydown", (e) =>  {
-    console.log(e.key);
     switch (e.key) {
         case "Enter":
             e.preventDefault();
@@ -340,9 +311,7 @@ document.addEventListener("keydown", (e) =>  {
 }
 )
 
-
-
-// Temp for dark mode
+// * Dark mode
 let root = document.querySelector(':root');
 let svgs = document.querySelectorAll("img");
 let slider = document.querySelector("input.switch");
@@ -355,8 +324,6 @@ slider.addEventListener("change", () => {
         restoreUI();
     }
 } )
-
-
 
 function changeUI () {
     root.style.setProperty("--bg-color", "#1a1c23");
@@ -380,5 +347,29 @@ function restoreUI (){
     info.removeAttribute("style");
 }
 
+// * Clock display
+let now = new Date();
+let hours = now.getHours();
+let minutes = now.getMinutes();
 
-// add switch to change
+if (hours < 10) {
+    hours = "0" + hours;
+}
+
+if (minutes < 10){
+    minutes = "0" + minutes;
+}
+
+// Update clock on page load
+const clock = document.querySelector("p#clock");
+clock.textContent = `${hours}:${minutes}`;
+
+
+// Update clock every minute
+setInterval( ()=> {
+    now = new Date();
+    hours = now.getHours();
+    minutes = now.getMinutes();
+
+    clock.textContent = `${hours}:${minutes}`;
+}, 60 * 1000);

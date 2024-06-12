@@ -275,8 +275,19 @@ if (minutes < 10){
     minutes = "0" + minutes;
 }
 
+// Update clock on page load
 const clock = document.querySelector("p#clock");
 clock.textContent = `${hours}:${minutes}`;
+
+
+// Update clock every minute
+setInterval( ()=> {
+    now = new Date();
+    hours = now.getHours();
+    minutes = now.getMinutes();
+
+    clock.textContent = `${hours}:${minutes}`;
+}, 60 * 1000);
 
 //adds keyboards support
 
@@ -334,7 +345,18 @@ document.addEventListener("keydown", (e) =>  {
 // Temp for dark mode
 let root = document.querySelector(':root');
 let svgs = document.querySelectorAll("img");
+let slider = document.querySelector("input.switch");
 let info = document.querySelector("div#info");
+
+slider.addEventListener("change", () => {
+    if (slider.checked) {
+        changeUI();
+    } else {
+        restoreUI();
+    }
+} )
+
+
 
 function changeUI () {
     root.style.setProperty("--bg-color", "black");
@@ -344,7 +366,6 @@ function changeUI () {
     root.style.setProperty("--font-color", "white");
     root.style.setProperty("--secondary-font-color", "grey");
     root.style.setProperty("--button-color", "white");
-    info.style.setProperty("display", "none");
     svgs.forEach((svg) => {
         svg.style.filter = "invert(1)";
     }

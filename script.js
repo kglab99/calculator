@@ -224,7 +224,30 @@ currentDisplay.textContent = "0";
 let secondaryDisplay = document.querySelector("p.secondary");
 secondaryDisplay.textContent = "";
 
+let dynamicFontSize;
+
 function updateCurrentDisplay() {
+
+    //Change font size dynamically based on lenght
+
+    let length = currentDisplay.textContent.length;    
+
+    switch (true) {
+        case length <= 9 :
+            currentDisplay.style.setProperty(`font-size`, `36px`);
+            break;
+        case length <= 15 :
+            currentDisplay.style.setProperty(`font-size`, `32px`);
+            break;
+        case length <= 21 :
+            currentDisplay.style.setProperty(`font-size`, `24px`);
+            break;
+        case length <= 28 :
+            currentDisplay.style.setProperty(`font-size`, `21px`);
+            break;
+    }
+
+    //Change display content
     if (firstNumberChosen == false && operator == "") {
     currentDisplay.textContent = `${firstNumber}`;
     secondaryDisplay.textContent = "";
@@ -235,6 +258,7 @@ function updateCurrentDisplay() {
     currentDisplay.textContent = `${firstNumber}${operator}${secondNumber}`;
     secondaryDisplay.textContent = "";
     }
+
 
 }
 

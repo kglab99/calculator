@@ -6,6 +6,7 @@
     --button-hover-bg-color: #B0EBB4;
     --font-color: #000000;
     --secondary-font-color: #010101b0;
+    --button-color: #000000;
 
 }
 
@@ -60,7 +61,7 @@ button {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: black;
+    color: var(--button-color);
 
     background-color: var(--button-bg-color);
     border-radius: 5px;
@@ -109,11 +110,20 @@ p.secondary {
 
 div#top-bar > p {
     margin-top: 0px;
+    color: var(--font-color)
 }
 
 p.current {
     font-size: 36px;
+    color: var(--font-color);
     margin: 0px 0px 5px 0px;
+}
+
+div#display {
+    height: 54px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 div.info-text {
@@ -130,6 +140,7 @@ div#info > h1 {
     text-align: center;
     margin-bottom: 0px;
     display: flex;
+    color: var(--font-color);
 }
 
 div#info > h1 > img {

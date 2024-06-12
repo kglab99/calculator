@@ -145,6 +145,9 @@ numberButtons.forEach((button) => {
             } else if (firstNumber == "0") {
                 firstNumber = button.textContent;
             }
+
+            // limit input lenght
+            firstNumber = firstNumber.substring(0, 9);
         } // switch to secondNumber when operator is clicked
         else if (firstNumberChosen == true) {
             if (secondNumber == "") {
@@ -153,6 +156,9 @@ numberButtons.forEach((button) => {
                 secondNumber = secondNumber + button.textContent;
             }
 
+
+            // limit input lenght
+            secondNumber = secondNumber.substring(0, 9);
         }
         updateCurrentDisplay();
 
@@ -298,3 +304,36 @@ document.addEventListener("keydown", (e) =>  {
     }
 }
 )
+
+
+
+// Temp for dark mode
+let root = document.querySelector(':root');
+let svgs = document.querySelectorAll("img");
+let info = document.querySelector("div#info");
+
+function changeUI () {
+    root.style.setProperty("--bg-color", "black");
+    root.style.setProperty("--calc-bg-color", "#22252D");
+    root.style.setProperty("--button-bg-color", "#2A2D37");
+    root.style.setProperty("--button-hover-bg-color", "#282832");
+    root.style.setProperty("--font-color", "white");
+    root.style.setProperty("--secondary-font-color", "grey");
+    root.style.setProperty("--button-color", "white");
+    info.style.setProperty("display", "none");
+    svgs.forEach((svg) => {
+        svg.style.filter = "invert(1)";
+    }
+)
+}
+
+function restoreUI (){
+    root.removeAttribute("style");
+    svgs.forEach((svg) => {
+        svg.removeAttribute("style");
+    })
+    info.removeAttribute("style");
+}
+
+
+// add switch to change

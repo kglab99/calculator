@@ -10,6 +10,11 @@
 
 }
 
+* {
+    transition: background-color linear 0.1s;
+
+}
+
 body {
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
@@ -22,7 +27,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 90vh;
-    /* transition: all 0.05s; */
 }
 
 .C {

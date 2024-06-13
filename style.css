@@ -80,6 +80,12 @@ button:hover {
     background-color: var(--button-hover-bg-color);
 }
 
+button:active {
+    scale: 0.95;
+    background-color: var(--button-hover-bg-color);
+    filter: brightness(95%);
+}
+
 #display {
     text-align: end;
     font-weight: 400;
@@ -122,8 +128,8 @@ p.current {
 div#display {
     height: 54px;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
